@@ -1,340 +1,344 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Rithani S R Portfolio</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root {
-      --cream: #f5f0e8; --ink: #1a1510; --ink-soft: #3d3530;
-      --amber: #c8832a; --amber-light: #e8a84a; --rust: #8b3a1a;
-      --sage: #5a6e52; --paper: #ece7dc; --border: #d4cdc0; --card: #f9f6f1;
-    }
-    html { scroll-behavior: smooth; }
-    body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--ink); line-height: 1.6; overflow-x: hidden; }
-    body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events: none; z-index: 0; opacity: 0.4; }
-    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 1.2rem 4rem; background: rgba(245, 240, 232, 0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
-    .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 900; color: var(--ink); letter-spacing: -0.02em; }
-    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
-    .nav-links a { text-decoration: none; color: var(--ink-soft); font-size: 0.85rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; transition: color 0.2s; }
-    .nav-links a:hover { color: var(--amber); }
-    .hero { min-height: 100vh; display: grid; grid-template-columns: 1fr; max-width: 700px; padding: 8rem 4rem 4rem; position: relative; }
-    .hero-text { position: relative; }
-    .hero-eyebrow { font-family: 'DM Mono', monospace; font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--amber); margin-bottom: 1.2rem; display: flex; align-items: center; gap: 0.8rem; }
-    .hero-eyebrow::before { content: ''; display: inline-block; width: 2rem; height: 1px; background: var(--amber); }
-    .hero-name { font-family: 'Playfair Display', serif; font-size: clamp(3.5rem, 6vw, 6rem); font-weight: 900; line-height: 1.0; letter-spacing: -0.03em; color: var(--ink); margin-bottom: 1.5rem; }
-    .hero-name em { font-style: italic; color: var(--amber); }
-    .hero-bio { font-size: 1.05rem; color: var(--ink-soft); max-width: 42ch; line-height: 1.75; margin-bottom: 2.5rem; }
-    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
-    .btn-primary { display: inline-block; padding: 0.85rem 2rem; background: var(--ink); color: var(--cream); text-decoration: none; font-size: 0.88rem; font-weight: 500; letter-spacing: 0.05em; transition: background 0.2s, transform 0.15s; }
-    .btn-primary:hover { background: var(--amber); transform: translateY(-2px); }
-    .btn-outline { display: inline-block; padding: 0.85rem 2rem; border: 1.5px solid var(--ink); color: var(--ink); text-decoration: none; font-size: 0.88rem; font-weight: 500; letter-spacing: 0.05em; transition: all 0.2s; }
-    .btn-outline:hover { border-color: var(--amber); color: var(--amber); }
-    .hero-social { margin-top: 2.5rem; display: flex; gap: 1.5rem; align-items: center; }
-    .hero-social a { text-decoration: none; color: var(--ink-soft); font-size: 0.82rem; font-weight: 500; letter-spacing: 0.05em; display: flex; align-items: center; gap: 0.4rem; transition: color 0.2s; }
-    .hero-social a:hover { color: var(--amber); }
-    .hero-visual { display: flex; justify-content: center; align-items: center; position: relative; }
-    .avatar-ring { width: 360px; height: 360px; border-radius: 50%; border: 2px solid var(--border); display: flex; align-items: center; justify-content: center; position: relative; }
-    .avatar-ring::before { content: ''; position: absolute; inset: 12px; border-radius: 50%; border: 1px dashed var(--amber-light); animation: spin 30s linear infinite; }
-    @keyframes spin { to { transform: rotate(360deg); } }
-    .avatar-initials { width: 280px; height: 280px; border-radius: 50%; background: linear-gradient(135deg, var(--paper), var(--border)); display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-size: 6rem; font-weight: 900; color: var(--ink); letter-spacing: -0.05em; }
-    .float-tag { position: absolute; background: var(--ink); color: var(--cream); padding: 0.5rem 0.9rem; font-family: 'DM Mono', monospace; font-size: 0.7rem; letter-spacing: 0.1em; white-space: nowrap; }
-    .float-tag:nth-child(1) { top: 20px; right: -10px; }
-    .float-tag:nth-child(2) { bottom: 60px; left: -20px; }
-    section { padding: 6rem 4rem; position: relative; }
-    .section-header { display: flex; align-items: baseline; gap: 1.5rem; margin-bottom: 3.5rem; }
-    .section-label { font-family: 'DM Mono', monospace; font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--amber); }
-    .section-title { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: 900; letter-spacing: -0.03em; color: var(--ink); line-height: 1.1; }
-    #about { background: var(--paper); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
-    .about-text p { font-size: 1rem; color: var(--ink-soft); line-height: 1.85; margin-bottom: 1.2rem; }
-    .about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
-    .stat-card { border: 1px solid var(--border); padding: 1.5rem; background: var(--cream); }
-    .stat-number { font-family: 'Playfair Display', serif; font-size: 2.5rem; font-weight: 900; color: var(--amber); line-height: 1; margin-bottom: 0.3rem; }
-    .stat-label { font-size: 0.8rem; color: var(--ink-soft); letter-spacing: 0.05em; }
-    .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
-    .skill-card { background: var(--card); border: 1px solid var(--border); padding: 2rem; transition: border-color 0.2s, transform 0.2s; }
-    .skill-card:hover { border-color: var(--amber); transform: translateY(-3px); }
-    .skill-icon { font-size: 1.6rem; margin-bottom: 1rem; }
-    .skill-name { font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 700; color: var(--ink); margin-bottom: 0.8rem; }
-    .skill-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
-    .tag { display: inline-block; padding: 0.25rem 0.65rem; background: var(--paper); border: 1px solid var(--border); font-family: 'DM Mono', monospace; font-size: 0.7rem; color: var(--ink-soft); letter-spacing: 0.05em; }
-    #experience { background: var(--paper); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-    .timeline { position: relative; padding-left: 2rem; }
-    .timeline::before { content: ''; position: absolute; left: 0; top: 8px; bottom: 8px; width: 1px; background: var(--border); }
-    .timeline-item { position: relative; padding: 0 0 3rem 2rem; }
-    .timeline-item::before { content: ''; position: absolute; left: -2rem; top: 8px; width: 9px; height: 9px; border-radius: 50%; background: var(--amber); border: 2px solid var(--cream); box-shadow: 0 0 0 1px var(--amber); }
-    .timeline-year { font-family: 'DM Mono', monospace; font-size: 0.72rem; letter-spacing: 0.15em; color: var(--amber); text-transform: uppercase; margin-bottom: 0.4rem; }
-    .timeline-role { font-family: 'Playfair Display', serif; font-size: 1.25rem; font-weight: 700; color: var(--ink); margin-bottom: 0.2rem; }
-    .timeline-company { font-size: 0.9rem; color: var(--ink-soft); margin-bottom: 0.8rem; }
-    .timeline-desc { list-style: none; }
-    .timeline-desc li { font-size: 0.92rem; color: var(--ink-soft); line-height: 1.6; margin-bottom: 0.4rem; padding-left: 1rem; position: relative; }
-    .timeline-desc li::before { content: '—'; position: absolute; left: 0; color: var(--amber); font-size: 0.8rem; }
-    .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 1.5rem; }
-    .project-card { background: var(--card); border: 1px solid var(--border); padding: 2rem; display: flex; flex-direction: column; gap: 1rem; transition: border-color 0.25s, transform 0.2s; position: relative; overflow: hidden; }
-    .project-card::after { content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 100%; background: var(--amber); transform: scaleY(0); transform-origin: top; transition: transform 0.25s; }
-    .project-card:hover { border-color: var(--amber); transform: translateY(-4px); }
-    .project-card:hover::after { transform: scaleY(1); }
-    
-    
-    .project-year { font-family: 'DM Mono', monospace; font-size: 0.7rem; letter-spacing: 0.15em; color: var(--amber); }
-    .project-emoji { font-size: 1.8rem; }
-    .project-title { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700; color: var(--ink); line-height: 1.3; }
-    .project-desc { font-size: 0.88rem; color: var(--ink-soft); line-height: 1.7; flex: 1; }
-    .project-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
-    .project-links { display: flex; gap: 1rem; margin-top: 0.5rem; }
-    .project-links a { font-size: 0.8rem; font-weight: 500; color: var(--ink); text-decoration: none; letter-spacing: 0.05em; border-bottom: 1px solid var(--border); padding-bottom: 1px; transition: color 0.2s, border-color 0.2s; }
-    .project-links a:hover { color: var(--amber); border-color: var(--amber); }
-    #contact { background: var(--ink); color: var(--cream); text-align: center; padding: 8rem 4rem; }
-    #contact .section-label { color: var(--amber-light); }
-    #contact .section-title { color: var(--cream); margin-bottom: 1.5rem; }
-    .contact-sub { font-size: 1rem; color: rgba(245,240,232,0.65); max-width: 48ch; margin: 0 auto 3rem; line-height: 1.75; }
-    .contact-links { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; }
-    .contact-links a { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.85rem 1.8rem; border: 1px solid rgba(245,240,232,0.2); color: var(--cream); text-decoration: none; font-size: 0.85rem; font-weight: 500; letter-spacing: 0.05em; transition: all 0.2s; }
-    .contact-links a:hover { background: var(--amber); border-color: var(--amber); color: var(--ink); }
-    footer { background: var(--ink); border-top: 1px solid rgba(255,255,255,0.08); padding: 1.5rem 4rem; display: flex; justify-content: space-between; align-items: center; color: rgba(245,240,232,0.4); font-size: 0.78rem; font-family: 'DM Mono', monospace; letter-spacing: 0.05em; }
-    .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
-    .fade-in.visible { opacity: 1; transform: none; }
-    @media (max-width: 900px) {
-      nav { padding: 1rem 2rem; } .nav-links { gap: 1.2rem; } .nav-links a { font-size: 0.78rem; }
-      .hero { grid-template-columns: 1fr; padding: 7rem 2rem 3rem; gap: 1.5rem; min-height: auto; }
-      .hero-visual { display: flex; justify-content: center; order: -1; } .hero-text { order: 1; }
-      .avatar-ring { width: 200px; height: 200px; } .float-tag { display: none; }
-      .hero-name { font-size: clamp(2.8rem, 8vw, 4rem); } section { padding: 4rem 2rem; }
-      .about-grid { grid-template-columns: 1fr; gap: 2rem; } .about-stats { grid-template-columns: 1fr 1fr; }
-      .skills-grid { grid-template-columns: 1fr 1fr; } .projects-grid { grid-template-columns: 1fr 1fr; gap: 1rem; }
-      .timeline { padding-left: 1.5rem; } footer { flex-direction: column; gap: 0.5rem; text-align: center; padding: 1.5rem 2rem; }
-      .contact-links { flex-direction: column; align-items: center; gap: 0.8rem; } #contact { padding: 5rem 2rem; }
-    }
-    @media (max-width: 600px) {
-      nav { padding: 0.9rem 1.2rem; } .nav-logo { font-size: 1.1rem; } .nav-links { gap: 0.6rem; } .nav-links a { font-size: 0.65rem; letter-spacing: 0.05em; }
-      .hero { grid-template-columns: 1fr; padding: 5.5rem 1.2rem 2.5rem; min-height: auto; gap: 1.2rem; }
-      .hero-visual { display: flex; justify-content: center; order: -1; } .hero-text { order: 1; text-align: left; }
-      .avatar-ring { width: 160px; height: 160px; } .avatar-ring::before { inset: 8px; } .float-tag { display: none; }
-      .hero-eyebrow { font-size: 0.68rem; } .hero-name { font-size: 2.5rem; line-height: 1.05; } .hero-bio { font-size: 0.92rem; }
-      .hero-actions { flex-direction: column; gap: 0.8rem; } .hero-actions a { text-align: center; width: 100%; }
-      .hero-social { flex-wrap: wrap; gap: 0.8rem; } .hero-social a { font-size: 0.78rem; }
-      section { padding: 3rem 1.2rem; } .section-header { flex-direction: column; gap: 0.4rem; margin-bottom: 2rem; } .section-title { font-size: 1.7rem; }
-      .about-grid { grid-template-columns: 1fr; gap: 1.5rem; } .about-stats { grid-template-columns: 1fr 1fr; gap: 0.8rem; }
-      .stat-card { padding: 1rem; } .stat-number { font-size: 2rem; } .stat-label { font-size: 0.72rem; }
-      .skills-grid { grid-template-columns: 1fr; gap: 1rem; } .skill-card { padding: 1.2rem; }
-      .projects-grid { grid-template-columns: 1fr; gap: 1rem; } .project-card { padding: 1.5rem; }
-      .timeline { padding-left: 1.2rem; } .timeline-item { padding: 0 0 2rem 1.5rem; } .timeline-role { font-size: 1.05rem; }
-      #contact { padding: 4rem 1.2rem; } .contact-links { flex-direction: column; align-items: stretch; gap: 0.8rem; }
-      .contact-links a { text-align: center; padding: 0.9rem 1rem; font-size: 0.82rem; } footer { padding: 1.2rem; font-size: 0.7rem; }
-    }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Rithani S R Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+--cream: #f5f0e8; --ink: #1a1510; --ink-soft: #3d3530;
+--amber: #c8832a; --amber-light: #e8a84a; --rust: #8b3a1a;
+--sage: #5a6e52; --paper: #ece7dc; --border: #d4cdc0; --card: #f9f6f1;
+}
+html { scroll-behavior: smooth; }
+body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--ink); line-height: 1.6; overflow-x: hidden; }
+body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events: none; z-index: 0; opacity: 0.4; }
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 1.2rem 4rem; background: rgba(245, 240, 232, 0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+.nav-logo { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 900; color: var(--ink); letter-spacing: -0.02em; }
+.nav-links { display: flex; gap: 2.5rem; list-style: none; }
+.nav-links a { text-decoration: none; color: var(--ink-soft); font-size: 0.85rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; transition: color 0.2s; }
+.nav-links a:hover { color: var(--amber); }
+.hero { min-height: 100vh; display: grid; grid-template-columns: 1fr; max-width: 700px; padding: 8rem 4rem 4rem; position: relative; }
+.hero-text { position: relative; }
+.hero-eyebrow { font-family: 'DM Mono', monospace; font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--amber); margin-bottom: 1.2rem; display: flex; align-items: center; gap: 0.8rem; }
+.hero-eyebrow::before { content: ''; display: inline-block; width: 2rem; height: 1px; background: var(--amber); }
+.hero-name { font-family: 'Playfair Display', serif; font-size: clamp(3.5rem, 6vw, 6rem); font-weight: 900; line-height: 1.0; letter-spacing: -0.03em; color: var(--ink); margin-bottom: 1.5rem; }
+.hero-name em { font-style: italic; color: var(--amber); }
+.hero-bio { font-size: 1.05rem; color: var(--ink-soft); max-width: 42ch; line-height: 1.75; margin-bottom: 2.5rem; }
+.hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
+.btn-primary { display: inline-block; padding: 0.85rem 2rem; background: var(--ink); color: var(--cream); text-decoration: none; font-size: 0.88rem; font-weight: 500; letter-spacing: 0.05em; transition: background 0.2s, transform 0.15s; }
+.btn-primary:hover { background: var(--amber); transform: translateY(-2px); }
+.btn-outline { display: inline-block; padding: 0.85rem 2rem; border: 1.5px solid var(--ink); color: var(--ink); text-decoration: none; font-size: 0.88rem; font-weight: 500; letter-spacing: 0.05em; transition: all 0.2s; }
+.btn-outline:hover { border-color: var(--amber); color: var(--amber); }
+.hero-social { margin-top: 2.5rem; display: flex; gap: 1.5rem; align-items: center; }
+.hero-social a { text-decoration: none; color: var(--ink-soft); font-size: 0.82rem; font-weight: 500; letter-spacing: 0.05em; display: flex; align-items: center; gap: 0.4rem; transition: color 0.2s; }
+.hero-social a:hover { color: var(--amber); }
+.hero-visual { display: flex; justify-content: center; align-items: center; position: relative; }
+.avatar-ring { width: 360px; height: 360px; border-radius: 50%; border: 2px solid var(--border); display: flex; align-items: center; justify-content: center; position: relative; }
+.avatar-ring::before { content: ''; position: absolute; inset: 12px; border-radius: 50%; border: 1px dashed var(--amber-light); animation: spin 30s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.avatar-initials { width: 280px; height: 280px; border-radius: 50%; background: linear-gradient(135deg, var(--paper), var(--border)); display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-size: 6rem; font-weight: 900; color: var(--ink); letter-spacing: -0.05em; }
+.float-tag { position: absolute; background: var(--ink); color: var(--cream); padding: 0.5rem 0.9rem; font-family: 'DM Mono', monospace; font-size: 0.7rem; letter-spacing: 0.1em; white-space: nowrap; }
+.float-tag:nth-child(1) { top: 20px; right: -10px; }
+.float-tag:nth-child(2) { bottom: 60px; left: -20px; }
+section { padding: 6rem 4rem; position: relative; }
+.section-header { display: flex; align-items: baseline; gap: 1.5rem; margin-bottom: 3.5rem; }
+.section-label { font-family: 'DM Mono', monospace; font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--amber); }
+.section-title { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: 900; letter-spacing: -0.03em; color: var(--ink); line-height: 1.1; }
+#about { background: var(--paper); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+.about-text p { font-size: 1rem; color: var(--ink-soft); line-height: 1.85; margin-bottom: 1.2rem; }
+.about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+.stat-card { border: 1px solid var(--border); padding: 1.5rem; background: var(--cream); }
+.stat-number { font-family: 'Playfair Display', serif; font-size: 2.5rem; font-weight: 900; color: var(--amber); line-height: 1; margin-bottom: 0.3rem; }
+.stat-label { font-size: 0.8rem; color: var(--ink-soft); letter-spacing: 0.05em; }
+.skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+.skill-card { background: var(--card); border: 1px solid var(--border); padding: 2rem; transition: border-color 0.2s, transform 0.2s; }
+.skill-card:hover { border-color: var(--amber); transform: translateY(-3px); }
+.skill-icon { font-size: 1.6rem; margin-bottom: 1rem; }
+.skill-name { font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 700; color: var(--ink); margin-bottom: 0.8rem; }
+.skill-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.tag { display: inline-block; padding: 0.25rem 0.65rem; background: var(--paper); border: 1px solid var(--border); font-family: 'DM Mono', monospace; font-size: 0.7rem; color: var(--ink-soft); letter-spacing: 0.05em; }
+#experience { background: var(--paper); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.timeline { position: relative; padding-left: 2rem; }
+.timeline::before { content: ''; position: absolute; left: 0; top: 8px; bottom: 8px; width: 1px; background: var(--border); }
+.timeline-item { position: relative; padding: 0 0 3rem 2rem; }
+.timeline-item::before { content: ''; position: absolute; left: -2rem; top: 8px; width: 9px; height: 9px; border-radius: 50%; background: var(--amber); border: 2px solid var(--cream); box-shadow: 0 0 0 1px var(--amber); }
+.timeline-year { font-family: 'DM Mono', monospace; font-size: 0.72rem; letter-spacing: 0.15em; color: var(--amber); text-transform: uppercase; margin-bottom: 0.4rem; }
+.timeline-role { font-family: 'Playfair Display', serif; font-size: 1.25rem; font-weight: 700; color: var(--ink); margin-bottom: 0.2rem; }
+.timeline-company { font-size: 0.9rem; color: var(--ink-soft); margin-bottom: 0.8rem; }
+.timeline-desc { list-style: none; }
+.timeline-desc li { font-size: 0.92rem; color: var(--ink-soft); line-height: 1.6; margin-bottom: 0.4rem; padding-left: 1rem; position: relative; }
+.timeline-desc li::before { content: '—'; position: absolute; left: 0; color: var(--amber); font-size: 0.8rem; }
+.projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 1.5rem; }
+.project-card { background: var(--card); border: 1px solid var(--border); padding: 2rem; display: flex; flex-direction: column; gap: 1rem; transition: border-color 0.25s, transform 0.2s; position: relative; overflow: hidden; }
+.project-card::after { content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 100%; background: var(--amber); transform: scaleY(0); transform-origin: top; transition: transform 0.25s; }
+.project-card:hover { border-color: var(--amber); transform: translateY(-4px); }
+.project-card:hover::after { transform: scaleY(1); }
+.project-year { font-family: 'DM Mono', monospace; font-size: 0.7rem; letter-spacing: 0.15em; color: var(--amber); }
+.project-emoji { font-size: 1.8rem; }
+.project-title { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700; color: var(--ink); line-height: 1.3; }
+.project-desc { font-size: 0.88rem; color: var(--ink-soft); line-height: 1.7; flex: 1; }
+.project-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.project-links { display: flex; gap: 1rem; margin-top: 0.5rem; }
+.project-links a { font-size: 0.8rem; font-weight: 500; color: var(--ink); text-decoration: none; letter-spacing: 0.05em; border-bottom: 1px solid var(--border); padding-bottom: 1px; transition: color 0.2s, border-color 0.2s; }
+.project-links a:hover { color: var(--amber); border-color: var(--amber); }
+#contact { background: var(--ink); color: var(--cream); text-align: center; padding: 8rem 4rem; }
+#contact .section-label { color: var(--amber-light); }
+#contact .section-title { color: var(--cream); margin-bottom: 1.5rem; }
+.contact-sub { font-size: 1rem; color: rgba(245,240,232,0.65); max-width: 48ch; margin: 0 auto 3rem; line-height: 1.75; }
+.contact-links { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; }
+.contact-links a { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.85rem 1.8rem; border: 1px solid rgba(245,240,232,0.2); color: var(--cream); text-decoration: none; font-size: 0.85rem; font-weight: 500; letter-spacing: 0.05em; transition: all 0.2s; }
+.contact-links a:hover { background: var(--amber); border-color: var(--amber); color: var(--ink); }
+footer { background: var(--ink); border-top: 1px solid rgba(255,255,255,0.08); padding: 1.5rem 4rem; display: flex; justify-content: space-between; align-items: center; color: rgba(245,240,232,0.4); font-size: 0.78rem; font-family: 'DM Mono', monospace; letter-spacing: 0.05em; }
+.fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.fade-in.visible { opacity: 1; transform: none; }
+@media (max-width: 900px) {
+nav { padding: 1rem 2rem; } .nav-links { gap: 1.2rem; } .nav-links a { font-size: 0.78rem; }
+.hero { grid-template-columns: 1fr; padding: 7rem 2rem 3rem; gap: 1.5rem; min-height: auto; }
+.hero-visual { display: flex; justify-content: center; order: -1; } .hero-text { order: 1; }
+.avatar-ring { width: 200px; height: 200px; } .float-tag { display: none; }
+.hero-name { font-size: clamp(2.8rem, 8vw, 4rem); } section { padding: 4rem 2rem; }
+.about-grid { grid-template-columns: 1fr; gap: 2rem; } .about-stats { grid-template-columns: 1fr 1fr; }
+.skills-grid { grid-template-columns: 1fr 1fr; } .projects-grid { grid-template-columns: 1fr 1fr; gap: 1rem; }
+.timeline { padding-left: 1.5rem; } footer { flex-direction: column; gap: 0.5rem; text-align: center; padding: 1.5rem 2rem; }
+.contact-links { flex-direction: column; align-items: center; gap: 0.8rem; } #contact { padding: 5rem 2rem; }
+}
+@media (max-width: 600px) {
+nav { padding: 0.9rem 1.2rem; } .nav-logo { font-size: 1.1rem; } .nav-links { gap: 0.6rem; } .nav-links a { font-size: 0.65rem; letter-spacing: 0.05em; }
+.hero { grid-template-columns: 1fr; padding: 5.5rem 1.2rem 2.5rem; min-height: auto; gap: 1.2rem; }
+.hero-visual { display: flex; justify-content: center; order: -1; } .hero-text { order: 1; text-align: left; }
+.avatar-ring { width: 160px; height: 160px; } .avatar-ring::before { inset: 8px; } .float-tag { display: none; }
+.hero-eyebrow { font-size: 0.68rem; } .hero-name { font-size: 2.5rem; line-height: 1.05; } .hero-bio { font-size: 0.92rem; }
+.hero-actions { flex-direction: column; gap: 0.8rem; } .hero-actions a { text-align: center; width: 100%; }
+.hero-social { flex-wrap: wrap; gap: 0.8rem; } .hero-social a { font-size: 0.78rem; }
+section { padding: 3rem 1.2rem; } .section-header { flex-direction: column; gap: 0.4rem; margin-bottom: 2rem; } .section-title { font-size: 1.7rem; }
+.about-grid { grid-template-columns: 1fr; gap: 1.5rem; } .about-stats { grid-template-columns: 1fr 1fr; gap: 0.8rem; }
+.stat-card { padding: 1rem; } .stat-number { font-size: 2rem; } .stat-label { font-size: 0.72rem; }
+.skills-grid { grid-template-columns: 1fr; gap: 1rem; } .skill-card { padding: 1.2rem; }
+.projects-grid { grid-template-columns: 1fr; gap: 1rem; } .project-card { padding: 1.5rem; }
+.timeline { padding-left: 1.2rem; } .timeline-item { padding: 0 0 2rem 1.5rem; } .timeline-role { font-size: 1.05rem; }
+#contact { padding: 4rem 1.2rem; } .contact-links { flex-direction: column; align-items: stretch; gap: 0.8rem; }
+.contact-links a { text-align: center; padding: 0.9rem 1rem; font-size: 0.82rem; } footer { padding: 1.2rem; font-size: 0.7rem; }
+}
+</style>
 </head>
 <body>
-  <nav>
-    <div class="nav-logo">SRR</div>
-    <ul class="nav-links">
-      <li><a href="#about">About</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#experience">Experience</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#contact">Hire Me</a></li>
-    </ul>
-  </nav>
-
-  <section class="hero">
-    <div class="hero-text fade-in">
-      <p class="hero-eyebrow">Available for opportunities</p>
-      <h1 class="hero-name">Rithani<br /><em>S R</em></h1>
-      <p class="hero-bio">I build clean, thoughtful web experiences from pixel perfect interfaces to full stack deployments. Currently sharpening my craft across frontend development, UI/UX design, and machine learning applications.</p>
-      <div class="hero-actions">
-        <a href="#projects" class="btn-primary">View My Work →</a>
-        <a href="mailto:srrithani95@gmail.com" class="btn-outline">✉ Get In Touch</a>
-      </div>
-      <div class="hero-social">
-        <a href="https://linkedin.com/in/rithani-sr-4455032b7" target="_blank">🔗 LinkedIn</a>
-        <a href="https://github.com/Rithani29" target="_blank">🐙 GitHub</a>
-        <a href="tel:+917904764245">📞 +91 79047 64245</a>
-      </div>
-    </div>
-    </section>
-
-  <section id="about">
-    <div class="section-header">
-      <span class="section-label">About</span>
-      <h2 class="section-title">Building the web,<br />shaping ideas.</h2>
-    </div>
-    <div class="about-grid fade-in">
-      <div class="about-text">
-        <p>I'm Rithani S R, a Computer Science graduate from Sri Ramakrishna Engineering College, Coimbatore (Class of 2026), with a passion for creating interfaces that are as functional as they are beautiful.</p>
-        <p>My work spans responsive web apps, real time detection systems, IoT dashboards, and deep learning applications. I care about the details from the way a button feels to how a model performs under pressure.</p>
-        <p>Currently gaining hands on industry experience as a Design Trainee, I thrive at the intersection of visual design and technical execution.</p>
-      </div>
-      <div class="about-stats">
-        <div class="stat-card"><div class="stat-number">7+</div><div class="stat-label">GitHub Projects</div></div>
-        <div class="stat-card"><div class="stat-number">3</div><div class="stat-label">Internships & Experience</div></div>
-        <div class="stat-card"><div class="stat-number">2026</div><div class="stat-label">Graduated</div></div>
-        <div class="stat-card"><div class="stat-number">∞</div><div class="stat-label">Curiosity</div></div>
-      </div>
-    </div>
-  </section>
-
-  <section id="skills">
-    <div class="section-header">
-      <span class="section-label">Skills</span>
-      <h2 class="section-title">What I work with.</h2>
-    </div>
-    <div class="skills-grid fade-in">
-      <div class="skill-card"><div class="skill-icon">⚡</div><div class="skill-name">Frontend Development</div><div class="skill-tags"><span class="tag">HTML5</span><span class="tag">CSS3</span><span class="tag">JavaScript ES6+</span><span class="tag">React.js</span><span class="tag">Responsive Design</span><span class="tag">Bootstrap</span></div></div>
-      <div class="skill-card"><div class="skill-icon">🎨</div><div class="skill-name">Design & Tools</div><div class="skill-tags"><span class="tag">Figma</span><span class="tag">Canva</span><span class="tag">UI/UX Principles</span><span class="tag">Adobe XD</span><span class="tag">Prototyping</span></div></div>
-      <div class="skill-card"><div class="skill-icon">🤖</div><div class="skill-name">AI & Machine Learning</div><div class="skill-tags"><span class="tag">Deep Learning</span><span class="tag">NLP</span><span class="tag">XGBoost</span><span class="tag">Computer Vision</span><span class="tag">Grad-CAM</span><span class="tag">YOLOv8</span><span class="tag">LLM Agents</span><span class="tag">CrewAI</span><span class="tag">LangGraph</span></div></div>
-      <div class="skill-card"><div class="skill-icon">🔗</div><div class="skill-name">Dev Tools & Methods</div><div class="skill-tags"><span class="tag">Git / GitHub</span><span class="tag">VS Code</span><span class="tag">Jira</span><span class="tag">n8n</span><span class="tag">Agile / Scrum</span><span class="tag">Debugging</span></div></div>
-      <div class="skill-card"><div class="skill-icon">🛡️</div><div class="skill-name">Cybersecurity</div><div class="skill-tags"><span class="tag">Wireshark</span><span class="tag">Burp Suite</span><span class="tag">Kali Linux</span><span class="tag">Network Analysis</span><span class="tag">Ethical Hacking</span></div></div>
-    </div>
-  </section>
-
-  <section id="experience">
-    <div class="section-header">
-      <span class="section-label">Experience</span>
-      <h2 class="section-title">Where I've worked.</h2>
-    </div>
-    <div class="timeline fade-in">
-      <div class="timeline-item">
-        <div class="timeline-year">2026 · 4 Weeks</div>
-        <div class="timeline-role">Design Trainee</div>
-        <div class="timeline-company">L.G. Balakrishnan & Bros Ltd (Bosch Plant, Kovilpalayam), Coimbatore</div>
-        <ul class="timeline-desc">
-          <li>Contributing to design initiatives at the Bosch Plant, applying engineering design principles and CAD-based tools to support ongoing manufacturing projects.</li>
-          <li>Collaborating cross-functionally with design and engineering teams to develop, review, and refine technical drawings and design documentation in alignment with industry standards.</li>
-        </ul>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-year">2024 · 2 Weeks</div>
-        <div class="timeline-role">Frontend Intern</div>
-        <div class="timeline-company">Twisys Infotech</div>
-        <ul class="timeline-desc">
-          <li>Redesigned and improved UI components, increasing usability and accessibility across screen sizes.</li>
-          <li>Applied responsive design techniques and Git version control throughout the development cycle.</li>
-        </ul>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-year">2024 · 2 Weeks</div>
-        <div class="timeline-role">Web Development Intern</div>
-        <div class="timeline-company">Knila IT Solutions, Coimbatore</div>
-        <ul class="timeline-desc">
-          <li>Developed and enhanced web application features using HTML, CSS, and JavaScript in an Agile team.</li>
-          <li>Debugged cross-browser compatibility issues, improving application stability and user experience.</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <section id="projects">
-    <div class="section-header">
-      <span class="section-label">Projects</span>
-      <h2 class="section-title">Things I've built.</h2>
-    </div>
-    <div class="projects-grid fade-in">
-
-      
-      <div class="project-card">
-        <div class="project-year">2026</div>
-        <div class="project-emoji">📄</div>
-        <div class="project-title">Resume Analyser — AI-Powered Job Application Tool</div>
-        <div class="project-desc">An AI-powered tool that analyses resume fit against job descriptions, auto-tailors the resume for each role using Claude, and semi-automates application form filling. Features keyword scoring, semantic matching, batch processing, and browser automation.</div>
-        <div class="project-tags">
-          <span class="tag">Python</span><span class="tag">Claude API</span><span class="tag">Playwright</span><span class="tag">scikit-learn</span><span class="tag">pdfplumber</span><span class="tag">Agentic AI</span>
-        </div>
-        <div class="project-links">
-          <a href="https://github.com/Rithani29/Resume-Analyser" target="_blank">GitHub →</a>
-        </div>
-      </div>
-
-      <div class="project-card">
-        <div class="project-year">2026</div>
-        <div class="project-emoji">🔍</div>
-        <div class="project-title">Glass Bottle Detection (YOLOv8)</div>
-        <div class="project-desc">YOLOv8-based glass bottle detection model trained on 5 classes with a mAP@0.5 of 0.9934. Ran 3 hyperparameter experiments on Kaggle GPU T4, showcasing industrial-grade computer vision.</div>
-        <div class="project-tags"><span class="tag">YOLOv8</span><span class="tag">Python</span><span class="tag">Kaggle</span><span class="tag">Computer Vision</span></div>
-        <div class="project-links"><a href="https://github.com/Rithani29/Glass-Bottle-Detection-YOLOv8" target="_blank">GitHub →</a></div>
-      </div>
-
-      <div class="project-card">
-        <div class="project-year">2026</div>
-        <div class="project-emoji">💸</div>
-        <div class="project-title">Expense Tracker</div>
-        <div class="project-desc">A personal finance tracking web app to log, categorize, and visualize daily expenses. Features a clean UI, category filters, and real-time balance calculations.</div>
-        <div class="project-tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span><span class="tag">LocalStorage</span></div>
-        <div class="project-links"><a href="https://github.com/Rithani29/expense-tracker" target="_blank">GitHub →</a></div>
-      </div>
-
-      <div class="project-card">
-        <div class="project-year">2024</div>
-        <div class="project-emoji">✅</div>
-        <div class="project-title">Todo List App</div>
-        <div class="project-desc">A clean, fully responsive task management app with add, complete, and delete functionality. Built with vanilla HTML, CSS, and JavaScript — lightweight and instant.</div>
-        <div class="project-tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span></div>
-        <div class="project-links"><a href="https://github.com/Rithani29/todolist-app" target="_blank">GitHub →</a></div>
-      </div>
-
-      <div class="project-card">
-        <div class="project-year">2024</div>
-        <div class="project-emoji">📝</div>
-        <div class="project-title">Personal Blog</div>
-        <div class="project-desc">A minimal, elegant personal blog built with HTML — clean typography, readable layout, and a calm reading experience designed from scratch.</div>
-        <div class="project-tags"><span class="tag">HTML</span><span class="tag">CSS</span></div>
-        <div class="project-links"><a href="https://github.com/Rithani29/PersonalBlog" target="_blank">GitHub →</a></div>
-      </div>
-
-      <div class="project-card">
-        <div class="project-year">2024</div>
-        <div class="project-emoji">🧠</div>
-        <div class="project-title">NeuroTrack+ — Multilingual Psychiatric Chatbot</div>
-        <div class="project-desc">An AI-powered therapy chatbot supporting 5+ languages to improve mental health accessibility. Built a responsive React interface with context-aware NLP responses for natural, supportive conversations.</div>
-        <div class="project-tags"><span class="tag">React</span><span class="tag">Python</span><span class="tag">NLP</span><span class="tag">Multilingual</span><span class="tag">Flask</span></div>
-      </div>
-
-      <div class="project-card">
-        <div class="project-year">2025</div>
-        <div class="project-emoji">🛡️</div>
-        <div class="project-title">Real-time Phishing Detection System</div>
-        <div class="project-desc">A real-time web security tool that detects phishing URLs and suspicious websites using machine learning models trained on threat datasets.</div>
-        <div class="project-tags"><span class="tag">Python</span><span class="tag">XGBoost</span><span class="tag">Machine Learning</span><span class="tag">Cybersecurity</span></div>
-      </div>
-
-      <div class="project-card">
-        <div class="project-year">2024</div>
-        <div class="project-emoji">🌊</div>
-        <div class="project-title">Anti-Drowning System — IoT + Frontend UI</div>
-        <div class="project-desc">Designed an IoT-enabled wearable band with real-time sensors to detect drowning risks and trigger emergency alerts. Built a React dashboard connected to a MySQL database to display live sensor data and alert logs.</div>
-        <div class="project-tags"><span class="tag">React</span><span class="tag">MySQL</span><span class="tag">IoT</span><span class="tag">REST API</span><span class="tag">Real-time Sensors</span></div>
-      </div>
-
-    </div>
-  </section>
-
-  <section id="contact">
-    <div class="section-header" style="justify-content: center;">
-      <span class="section-label">Hire Me</span>
-    </div>
-    <h2 class="section-title" style="font-family: 'Playfair Display', serif; font-size: clamp(2rem,4vw,3rem); font-weight:900; letter-spacing:-0.03em; color: var(--cream); margin-bottom: 1.2rem; text-align:center;">Let's work together.</h2>
-    <p class="contact-sub">I'm open to frontend roles, design internships, and collaborative projects. If you think we'd be a good fit, I'd love to hear from you.</p>
-    <div class="contact-links">
-      <a href="mailto:srrithani95@gmail.com">✉ srrithani95@gmail.com</a>
-      <a href="https://linkedin.com/in/rithani-sr-4455032b7" target="_blank">🔗 LinkedIn</a>
-      <a href="tel:+917904764245">📞 +91 79047 64245</a>
-    </div>
-  </section>
-
-  <footer>
-    <span>© 2026 Rithani S R</span>
-    <span>Built with care · Coimbatore, India</span>
-  </footer>
-
-  <script>
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-    }, { threshold: 0.1 });
-    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-  </script>
+<nav>
+<div class="nav-logo">SRR</div>
+<ul class="nav-links">
+<li><a href="#about">About</a></li>
+<li><a href="#skills">Skills</a></li>
+<li><a href="#experience">Experience</a></li>
+<li><a href="#projects">Projects</a></li>
+<li><a href="#contact">Hire Me</a></li>
+</ul>
+</nav>
+<section class="hero">
+<div class="hero-text fade-in">
+<p class="hero-eyebrow">Available for opportunities</p>
+<h1 class="hero-name">Rithani<br /><em>S R</em></h1>
+<p class="hero-bio">I build clean, thoughtful web experiences from pixel perfect interfaces to full stack deployments. Currently sharpening my craft across frontend development, UI/UX design, and machine learning applications.</p>
+<div class="hero-actions">
+<a href="#projects" class="btn-primary">View My Work →</a>
+<a href="mailto:srrithani95@gmail.com" class="btn-outline">✉ Get In Touch</a>
+</div>
+<div class="hero-social">
+<a href="https://linkedin.com/in/rithani-sr-4455032b7" target="_blank">🔗 LinkedIn</a>
+<a href="https://github.com/Rithani29" target="_blank">🐙 GitHub</a>
+<a href="tel:+917904764245">📞 +91 79047 64245</a>
+</div>
+</div>
+</section>
+<section id="about">
+<div class="section-header">
+<span class="section-label">About</span>
+<h2 class="section-title">Building the web,<br />shaping ideas.</h2>
+</div>
+<div class="about-grid fade-in">
+<div class="about-text">
+<p>I'm Rithani S R, a Computer Science graduate from Sri Ramakrishna Engineering College, Coimbatore (Class of 2026), with a passion for creating interfaces that are as functional as they are beautiful.</p>
+<p>My work spans responsive web apps, real time detection systems, IoT dashboards, and deep learning applications. I care about the details from the way a button feels to how a model performs under pressure.</p>
+<p>Currently gaining hands on industry experience as a Design Trainee, I thrive at the intersection of visual design and technical execution.</p>
+</div>
+<div class="about-stats">
+<div class="stat-card"><div class="stat-number">9+</div><div class="stat-label">GitHub Projects</div></div>
+<div class="stat-card"><div class="stat-number">3</div><div class="stat-label">Internships & Experience</div></div>
+<div class="stat-card"><div class="stat-number">2026</div><div class="stat-label">Graduated</div></div>
+<div class="stat-card"><div class="stat-number">∞</div><div class="stat-label">Curiosity</div></div>
+</div>
+</div>
+</section>
+<section id="skills">
+<div class="section-header">
+<span class="section-label">Skills</span>
+<h2 class="section-title">What I work with.</h2>
+</div>
+<div class="skills-grid fade-in">
+<div class="skill-card"><div class="skill-icon">⚡</div><div class="skill-name">Frontend Development</div><div class="skill-tags"><span class="tag">HTML5</span><span class="tag">CSS3</span><span class="tag">JavaScript ES6+</span><span class="tag">React.js</span><span class="tag">Responsive Design</span><span class="tag">Bootstrap</span></div></div>
+<div class="skill-card"><div class="skill-icon">🎨</div><div class="skill-name">Design & Tools</div><div class="skill-tags"><span class="tag">Figma</span><span class="tag">Canva</span><span class="tag">UI/UX Principles</span><span class="tag">Adobe XD</span><span class="tag">Prototyping</span></div></div>
+<div class="skill-card"><div class="skill-icon">🤖</div><div class="skill-name">AI & Machine Learning</div><div class="skill-tags"><span class="tag">Deep Learning</span><span class="tag">NLP</span><span class="tag">XGBoost</span><span class="tag">Computer Vision</span><span class="tag">Grad-CAM</span><span class="tag">YOLOv8</span><span class="tag">LLM Agents</span><span class="tag">CrewAI</span><span class="tag">LangGraph</span></div></div>
+<div class="skill-card"><div class="skill-icon">🔗</div><div class="skill-name">Dev Tools & Methods</div><div class="skill-tags"><span class="tag">Git / GitHub</span><span class="tag">VS Code</span><span class="tag">Jira</span><span class="tag">n8n</span><span class="tag">Agile / Scrum</span><span class="tag">Debugging</span></div></div>
+<div class="skill-card"><div class="skill-icon">🛡️</div><div class="skill-name">Cybersecurity</div><div class="skill-tags"><span class="tag">Wireshark</span><span class="tag">Burp Suite</span><span class="tag">Kali Linux</span><span class="tag">Network Analysis</span><span class="tag">Ethical Hacking</span></div></div>
+</div>
+</section>
+<section id="experience">
+<div class="section-header">
+<span class="section-label">Experience</span>
+<h2 class="section-title">Where I've worked.</h2>
+</div>
+<div class="timeline fade-in">
+<div class="timeline-item">
+<div class="timeline-year">2026 · 4 Weeks</div>
+<div class="timeline-role">Design Trainee</div>
+<div class="timeline-company">L.G. Balakrishnan & Bros Ltd (Bosch Plant, Kovilpalayam), Coimbatore</div>
+<ul class="timeline-desc">
+<li>Contributing to design initiatives at the Bosch Plant, applying engineering design principles and CAD-based tools to support ongoing manufacturing projects.</li>
+<li>Collaborating cross-functionally with design and engineering teams to develop, review, and refine technical drawings and design documentation in alignment with industry standards.</li>
+</ul>
+</div>
+<div class="timeline-item">
+<div class="timeline-year">2024 · 2 Weeks</div>
+<div class="timeline-role">Frontend Intern</div>
+<div class="timeline-company">Twisys Infotech</div>
+<ul class="timeline-desc">
+<li>Redesigned and improved UI components, increasing usability and accessibility across screen sizes.</li>
+<li>Applied responsive design techniques and Git version control throughout the development cycle.</li>
+</ul>
+</div>
+<div class="timeline-item">
+<div class="timeline-year">2024 · 2 Weeks</div>
+<div class="timeline-role">Web Development Intern</div>
+<div class="timeline-company">Knila IT Solutions, Coimbatore</div>
+<ul class="timeline-desc">
+<li>Developed and enhanced web application features using HTML, CSS, and JavaScript in an Agile team.</li>
+<li>Debugged cross-browser compatibility issues, improving application stability and user experience.</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="projects">
+<div class="section-header">
+<span class="section-label">Projects</span>
+<h2 class="section-title">Things I've built.</h2>
+</div>
+<div class="projects-grid fade-in">
+<div class="project-card">
+<div class="project-year">2026</div>
+<div class="project-emoji">📄</div>
+<div class="project-title">Resume Analyser — AI-Powered Job Application Tool</div>
+<div class="project-desc">An AI-powered tool that analyses resume fit against job descriptions, auto-tailors the resume for each role using Claude, and semi-automates application form filling. Features keyword scoring, semantic matching, batch processing, and browser automation.</div>
+<div class="project-tags">
+<span class="tag">Python</span><span class="tag">Claude API</span><span class="tag">Playwright</span><span class="tag">scikit-learn</span><span class="tag">pdfplumber</span><span class="tag">Agentic AI</span>
+</div>
+<div class="project-links">
+<a href="https://github.com/Rithani29/Resume-Analyser" target="_blank">GitHub →</a>
+</div>
+</div>
+<div class="project-card">
+<div class="project-year">2026</div>
+<div class="project-emoji">🤖</div>
+<div class="project-title">RithaniAI — Full-Stack AI Assistant</div>
+<div class="project-desc">A full-stack personal AI assistant with a modern React frontend and a FastAPI backend, running local LLMs through Ollama. Includes a documented REST API with Swagger, so the assistant can be queried and extended like any other service.</div>
+<div class="project-tags">
+<span class="tag">React</span><span class="tag">FastAPI</span><span class="tag">Ollama</span><span class="tag">REST API</span><span class="tag">Local LLM</span><span class="tag">Swagger</span>
+</div>
+<div class="project-links">
+<a href="https://github.com/Rithani29/RithaniAI" target="_blank">GitHub →</a>
+</div>
+</div>
+<div class="project-card">
+<div class="project-year">2026</div>
+<div class="project-emoji">⚙️</div>
+<div class="project-title">AI Agent Projects — Autonomous Agent Playground</div>
+<div class="project-desc">A hands-on collection of 8 autonomous AI agent builds — a career-twin agent, an SDR outreach agent, a deep research agent, a stock picker, a 4-agent engineering team (PM → architect → engineer → tester), a browser sidekick, an agent creator, and a multi-agent trading floor.</div>
+<div class="project-tags">
+<span class="tag">Python</span><span class="tag">LLM Agents</span><span class="tag">Agent Orchestration</span><span class="tag">Multi-Agent Systems</span>
+</div>
+<div class="project-links">
+<a href="https://github.com/Rithani29/AI-Agent-Projects" target="_blank">GitHub →</a>
+</div>
+</div>
+<div class="project-card">
+<div class="project-year">2026</div>
+<div class="project-emoji">🔍</div>
+<div class="project-title">Glass Bottle Detection (YOLOv8)</div>
+<div class="project-desc">YOLOv8-based glass bottle detection model trained on 5 classes with a mAP@0.5 of 0.9934. Ran 3 hyperparameter experiments on Kaggle GPU T4, showcasing industrial-grade computer vision.</div>
+<div class="project-tags"><span class="tag">YOLOv8</span><span class="tag">Python</span><span class="tag">Kaggle</span><span class="tag">Computer Vision</span></div>
+<div class="project-links"><a href="https://github.com/Rithani29/Glass-Bottle-Detection-YOLOv8" target="_blank">GitHub →</a></div>
+</div>
+<div class="project-card">
+<div class="project-year">2026</div>
+<div class="project-emoji">💸</div>
+<div class="project-title">Expense Tracker</div>
+<div class="project-desc">A personal finance tracking web app to log, categorize, and visualize daily expenses. Features a clean UI, category filters, and real-time balance calculations.</div>
+<div class="project-tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span><span class="tag">LocalStorage</span></div>
+<div class="project-links"><a href="https://github.com/Rithani29/expense-tracker" target="_blank">GitHub →</a></div>
+</div>
+<div class="project-card">
+<div class="project-year">2024</div>
+<div class="project-emoji">✅</div>
+<div class="project-title">Todo List App</div>
+<div class="project-desc">A clean, fully responsive task management app with add, complete, and delete functionality. Built with vanilla HTML, CSS, and JavaScript — lightweight and instant.</div>
+<div class="project-tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span></div>
+<div class="project-links"><a href="https://github.com/Rithani29/todolist-app" target="_blank">GitHub →</a></div>
+</div>
+<div class="project-card">
+<div class="project-year">2024</div>
+<div class="project-emoji">📝</div>
+<div class="project-title">Personal Blog</div>
+<div class="project-desc">A minimal, elegant personal blog built with HTML — clean typography, readable layout, and a calm reading experience designed from scratch.</div>
+<div class="project-tags"><span class="tag">HTML</span><span class="tag">CSS</span></div>
+<div class="project-links"><a href="https://github.com/Rithani29/PersonalBlog" target="_blank">GitHub →</a></div>
+</div>
+<div class="project-card">
+<div class="project-year">2024</div>
+<div class="project-emoji">🧠</div>
+<div class="project-title">NeuroTrack+ — Multilingual Psychiatric Chatbot</div>
+<div class="project-desc">An AI-powered therapy chatbot supporting 5+ languages to improve mental health accessibility. Built a responsive React interface with context-aware NLP responses for natural, supportive conversations.</div>
+<div class="project-tags"><span class="tag">React</span><span class="tag">Python</span><span class="tag">NLP</span><span class="tag">Multilingual</span><span class="tag">Flask</span></div>
+</div>
+<div class="project-card">
+<div class="project-year">2025</div>
+<div class="project-emoji">🛡️</div>
+<div class="project-title">Real-time Phishing Detection System</div>
+<div class="project-desc">A real-time web security tool that detects phishing URLs and suspicious websites using machine learning models trained on threat datasets.</div>
+<div class="project-tags"><span class="tag">Python</span><span class="tag">XGBoost</span><span class="tag">Machine Learning</span><span class="tag">Cybersecurity</span></div>
+</div>
+<div class="project-card">
+<div class="project-year">2024</div>
+<div class="project-emoji">🌊</div>
+<div class="project-title">Anti-Drowning System — IoT + Frontend UI</div>
+<div class="project-desc">Designed an IoT-enabled wearable band with real-time sensors to detect drowning risks and trigger emergency alerts. Built a React dashboard connected to a MySQL database to display live sensor data and alert logs.</div>
+<div class="project-tags"><span class="tag">React</span><span class="tag">MySQL</span><span class="tag">IoT</span><span class="tag">REST API</span><span class="tag">Real-time Sensors</span></div>
+</div>
+</div>
+</section>
+<section id="contact">
+<div class="section-header" style="justify-content: center;">
+<span class="section-label">Hire Me</span>
+</div>
+<h2 class="section-title" style="font-family: 'Playfair Display', serif; font-size: clamp(2rem,4vw,3rem); font-weight:900; letter-spacing:-0.03em; color: var(--cream); margin-bottom: 1.2rem; text-align:center;">Let's work together.</h2>
+<p class="contact-sub">I'm open to frontend roles, design internships, and collaborative projects. If you think we'd be a good fit, I'd love to hear from you.</p>
+<div class="contact-links">
+<a href="mailto:srrithani95@gmail.com">✉ srrithani95@gmail.com</a>
+<a href="https://linkedin.com/in/rithani-sr-4455032b7" target="_blank">🔗 LinkedIn</a>
+<a href="tel:+917904764245">📞 +91 79047 64245</a>
+</div>
+</section>
+<footer>
+<span>© 2026 Rithani S R</span>
+<span>Built with care · Coimbatore, India</span>
+</footer>
+<script>
+const observer = new IntersectionObserver((entries) => {
+entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
 </body>
 </html>
